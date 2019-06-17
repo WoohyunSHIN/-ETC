@@ -1,8 +1,8 @@
-Book Reference : [Pro Git][https://git-scm.com/book/ko/v2]
+// Reference Book: [Pro Git](https://git-scm.com/book/ko/v2)
 
-Visual Studio Code 와 연동 하기 위해서는 접속후 -> Shift + Cmd + P -> Git Clone + URL 
+// Written by WoohyunSHIN. I reconstitute the reference book as my style for studying. If you have question or I commit an infrigement of copyright, send me a mail <swh159@gmail.com> please thank you.
 
-# 1. Git 이란 ?
+#1. Git 이란 ?
 
 ***
 
