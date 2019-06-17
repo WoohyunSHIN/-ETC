@@ -2,7 +2,7 @@
 
 // Written by WoohyunSHIN. I reconstitute the reference book as my style for studying. If you have question or I commit an infrigement of copyright, send me a mail <swh159@gmail.com> please thank you.
 
-#1. Git 이란 ?
+# 1. Git 이란 ?
 
 ***
 
