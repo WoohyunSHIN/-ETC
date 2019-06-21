@@ -8,6 +8,28 @@
 
 ​	VCS (Version Control System) 의 일종으로 소스코드를 효과적으로 관리하기 위해 개발된 '분산형 버전 관리 시스템이다.'
 
+**IMPORTANT** : 아래의 내용을 다 모르더라도 나는 Github를 간단하게 사용하겠다고 한다면 아래의 내용은 알고 넘어가자. 여러명과의 공동작업이라고 하기보단 개인 공부용 포트폴리오 용으로 사용할 수 있다.
+
+#### Tip : 아래는 CLI 를 이용하여 local 에서 Github 에 파일을 업로드 하는 명령어 이다. 
+
+```
+1. git init : 현재(pwd) 존재하는 위치의 디렉토리를 git 저장소로 사용할 것이다! 라고 명명 하는 작업이다.
+
+2. git add [파일명] : 디렉토리 안에 [파일]을 git이 관리하는 local 저장소로 commit 영역에 넣을 것이다. 대기실이라고 생각하면 편하다. 팁은 현위치를 나타내는 "." 을 이용하여 모든 파일을 대기실로 넣을 수 있다.
+
+3. git commit -m "first commit" : 현재 대기실에 있는 파일들에게 first commit 이라는 이름표를 붙여라
+
+4. git remote add origin https://github.com/WoohyunSHIN/ETC.git : Github에 있는 디렉토리와 local의 선을 이어주는 작업으로 한번만 작업하면 된다.
+
+5. git push -u origin master : 이름표를 단 파일들을 원격저장소로 밀어보낸다! 라는 명령어이다. 다음부터는 git push 라고만 입력해도 원격저장소로 이어진다.
+```
+
+***
+
+![und](/Users/Shinwoohyun/Pictures/forGit/1.png)
+
+
+
 ## 1.1. Github 란 ?
 
 ***
@@ -150,5 +172,105 @@ git commit -m "second commit"
 
 ```
 git commit -a -m "added new lines for test"
+```
+
+
+
+### 1.5.1. 파일 삭제
+
+***
+
+​	Git 에서 파일을 제거하려면 **git rm [파일명]** 명령으로 Tracked 상태의 파일을 삭제후에 commit 해야한다. 이명령은 워킹 디렉토리에 있는 파일도 삭제하기 때문에 실제 파일도 지워진다. 커밋하면 파일은 삭제되고 Git은 이 파일을 더는 추적하지 않는다. 
+
+​	이미 파일을 수정했거나 Staging Area에 추가했다면 **-f** 옵션을 주어 **강제 삭제**해야한다. 
+
+```
+$ git rm PROJECTS.md
+rm 'PROJECTS.md'
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'
+Changes to be committed:
+	(use "git reset HEAD <file>..." to unstage)
+
+		deleted: PROJECTS.md
+```
+
+
+
+### 1.5.2. 파일 이름 변경하기
+
+***
+
+​	리눅스처럼 mv 를 사용하는 것은 똑같으나 단순 mv 만을 사용하지 않고 **git mv** 라는 명령어를 사용하여 mv 후 원래 파일을 git rm 하는 번거러움을 없앤다.
+
+```
+$ git mv README.md README
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'
+Changes to be committed:
+	(use "git reset HEAD <file>..." to unstage)
+
+		renamed: README.md -> README
+```
+
+***
+
+
+
+## 1.6. Git의 기초
+
+
+
+### 1.6.1. 커밋 히스토리 조회하기
+
+***
+
+​	저장소의 히스토리를 보고 싶을 때 사용하는 명령어로 **git log** 가 있다. 특별한 아규먼트 없이 git log 명령을 실행하면 저장소의 커밋 히스토리를 시간순으로 보여준다. 가장 유용한 옵션 2가지만 예로 들자면 :
+
+> **-p** : 각 커밋의 diff 결과를 보여준다. 추가 : **-2** 옵션을 사용하여 최근 2개만 본다.
+>
+> ```
+> git log -p -2
+> ```
+
+> **-S** : 코드에서 추가되거나 제거된 내용 중에 특정 텍스트가 포함되어 있는지를 검색한다. 
+>
+> ```
+> git log -S [찾는내용]
+> ```
+
+***
+
+### 1.6.2. 파일 상태를 Unstage로 변경하기
+
+​	여러 파일을 Staged 한후 commit 을 하기전 한 파일을 수정을 하고싶다. 이러한 경우 수정이 필요한 파일을 Unstage 후 다시 **git add** 를 사용하여 staged를 해야한다. 그럴때 사용하는 명령어는 **git reset HEAD [파일명]** 이다.
+
+```
+$ git add *
+$ git reset HEAD CONTRIBUTING.md
+Unstaged changes after reset:
+M			CONTRIBUTING.md
+```
+
+***
+
+### 1.6.3. Remote Repository 
+
+​	인터넷이나 네트워크 어딘가에 있는 저장소를 뜻한다. 저장소에 대한 다양한 권한(RWX)을 부여 할 수 있다. 리모트 저장소를 관리한다는 것은 저장소를 추가, 삭제하는 것 뿐만 아니라 브랜치를 관리하고 추적할지 말지 등을 관리하는 것을 말한다.
+
+> 먼저, **git remote** 라는 명령어를 입력하게 되면 현재 프로젝트에 등록된 여러 리모트 저장소를 확인할수 있다. 
+
+> git clone 명령어를 사용하게 되면 default 값으로 origin 으로 이름이 잡히게 된다. 기존 워킹 디렉토리에 새 리모트 저장소를 추가할 수 있는데 **git remote add [단축이름] [url]** 를 사용한다.
+
+***
+
+### 1.6.4. Remote 저장소를 Pull or Fetch 하기
+
+​	리모트 저장소에 데이터를 가져오려면 간단히 다음 명령어를 실행한다.
+
+```
+$ git fetch <remote>
 ```
 
