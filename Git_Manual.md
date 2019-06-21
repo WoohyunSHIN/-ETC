@@ -24,10 +24,6 @@
 5. git push -u origin master : 이름표를 단 파일들을 원격저장소로 밀어보낸다! 라는 명령어이다. 다음부터는 git push 라고만 입력해도 원격저장소로 이어진다.
 ```
 
-***
-
-![und](/Users/Shinwoohyun/Pictures/forGit/1.png)
-
 
 
 ## 1.1. Github 란 ?
@@ -265,12 +261,4 @@ M			CONTRIBUTING.md
 > git clone 명령어를 사용하게 되면 default 값으로 origin 으로 이름이 잡히게 된다. 기존 워킹 디렉토리에 새 리모트 저장소를 추가할 수 있는데 **git remote add [단축이름] [url]** 를 사용한다.
 
 ***
-
-### 1.6.4. Remote 저장소를 Pull or Fetch 하기
-
-​	리모트 저장소에 데이터를 가져오려면 간단히 다음 명령어를 실행한다.
-
-```
-$ git fetch <remote>
-```
 
